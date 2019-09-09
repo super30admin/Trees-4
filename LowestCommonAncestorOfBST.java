@@ -16,7 +16,12 @@ public class LowestCommonAncestorOfBST {
         
 		// TC : O(n)
 		// SC : O(1)
-		
+		/*
+		 * IDEA: Since it is BST, we can use the property of BST to solve the problem. 
+		 * Check if both the nodes are to the left or right of the root, keep on updating the 
+		 * value of parent node accordingly. Return the parent node.
+		 * 
+		 */
 		// ITERATIVE APPROACH
         TreeNode parentRoot = root;
         int pVal = p.val;
