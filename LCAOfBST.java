@@ -1,7 +1,7 @@
 
 //LCA means  node in between p and q if p<q then p<LCA<q
-	//iteratve tc:o(n) sc o(1)
-	//recusive tc:o(n) sc o(n)
+	//iteratve tc:o(log N) sc o(1)
+	//recusive tc:o(logN) sc o(n)
 public class LCAOfBST {
 	
 	public class TreeNode {
