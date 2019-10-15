@@ -15,3 +15,13 @@ while root:
             root = root.right
         elif p.val < root.val and q.val < root.val:
             root = root.left
+
+
+
+            def inorder(self,root):
+                res = []
+                while root:
+                    self.inorder(root.left)
+                    res.append(root.val)
+                    self.inorder(root.right)
+                return res
