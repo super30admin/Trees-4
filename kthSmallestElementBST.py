@@ -6,8 +6,8 @@
 #         self.right = None
 
 #Accepted on leetcode
-#Time complexity - O(N) as we traverse every node
-#Space omplexity - O(1)
+#Time complexity - O(h+k) as we traverse nodes at each level until kth node
+#Space omplexity - O(h+k) since we are using physical stack
 
 class Solution(object):
     def kthSmallest(self, root, k):
@@ -26,4 +26,4 @@ class Solution(object):
             if k == 0:
                 break
             root = root.right
-        return root.val        
+        return root.val
