@@ -1,8 +1,8 @@
 public class CommonAncestorBST {
 
-	//	Time: Exponential O(2^n) or O(amount^n)
-	//	Space O(1) ignoring recursive stack
-	//	LeetCode: Time limit excedded
+	//	Time:  O() 
+	//	Space O(1) 
+	//	LeetCode: yes
 	
 	public class TreeNode {
 		int val;
