@@ -1,0 +1,34 @@
+TC:O(n)
+SC:O(n)
+
+Runtime: 2 ms, faster than 15.98% of Java online submissions for Kth Smallest Element in a BST.
+
+Approach: Arrange in increasing order by inorder traversal. Then return the kth index
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    List<TreeNode> list = new ArrayList<>();
+    public int kthSmallest(TreeNode root, int k) {
+        helper(root);
+        System.out.println(list.get(k-1).val);
+        return list.get(k-1).val;
+    }
+    private  void helper(TreeNode root){
+        if(root == null){
+            return ;
+        }
+        helper(root.left);
+        list.add(root);
+        helper(root.right);
+    }
+    
+}
