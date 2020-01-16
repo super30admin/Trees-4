@@ -11,7 +11,7 @@
 /**
 Leet Code Submitted : Yes
 Space Complexity : O(1)
-Time Complexity : O(depth of tree - 1)
+Time Complexity : O(Number of nodes in Tree)
 
 The idea is to use Binary Search Tree property where root will always be greater than left part of the tree and root will be less than right part of tree. Then we can compare p and q values with root to see on which part of the tree we need to traverse to determine lowest common ancestor 
 **/
