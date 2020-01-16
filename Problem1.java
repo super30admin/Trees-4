@@ -11,7 +11,7 @@
 /**
 LeetCode Submitted : YES
 Space Complexity : O(1) 
-Time Complexity : O(Max Depth of Tree)
+Time Complexity : O(Number of nodes in Tree)
 
 The idea is to do inorder traversal and return first kth element in the traversal since its a BST.
 
