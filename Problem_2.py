@@ -1,8 +1,8 @@
 # Runs on Leetcode
-  n is number of nodes
+  # n is number of nodes, h is height of tree
     # Solution 1
         # Runtime - O(n)
-        # Memory - O(n) considering the recursive stack
+        # Memory - O(h) considering the recursive stack
     # Solution 2
         # Runtime - O(n)
         # Memory - O(1)
