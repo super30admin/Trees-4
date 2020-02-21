@@ -1,5 +1,5 @@
 //TC - O(k)
-//SC - O(1)
+//SC - O(h)
 //inorder iterative
 
 class Solution {
