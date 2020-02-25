@@ -1,5 +1,5 @@
 //Time complexity is O(logn)
-//Space complexity is O(logn)
+//Space complexity is O(1)
 //This solution is submitted on leetcode
 
 public class BigN100LowestCommonAncestorIterative {
