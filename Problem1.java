@@ -21,3 +21,7 @@ class Solution {
         inorder(root.right, k, list);
     }
 }
+
+// optimised
+// Time - O(k)
+// Space - O()
