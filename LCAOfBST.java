@@ -1,13 +1,3 @@
-i/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-/*
 I would be using the property of Binary Search Tree here
 - left subtree of a node contains nodes whose values are lesser than or equal to node's value.
 - right subtree of a node contains nodes whose values are greater than node's value.
@@ -23,14 +13,28 @@ Space Complexity- O(h) where h is the height of the tree.
 */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //return lowestCommonAncestorRecursive(root, p, q);
+        return lowestCommonAncestorIterative(root, p, q);
+    }
+    private TreeNode lowestCommonAncestorRecursive(TreeNode root, TreeNode p, TreeNode q){
         if(root == null) return null;
-        //p and q < root, search in a left subtree of root
         if(p.val < root.val && q.val < root.val)
             return lowestCommonAncestor(root.left, p, q);
-         //p and q > root, search in a right subtree of root
         if(p.val > root.val && q.val > root.val)
             return lowestCommonAncestor(root.right, p, q);
-        //else root is the LCA
+        
         return root;
+    }
+    //here we dont need to use stack as once we reduce our search space to either left or right, we dont need to remember where we came from. 
+    private TreeNode lowestCommonAncestorIterative(TreeNode root, TreeNode p, TreeNode q){
+        while(root != null){
+            if(p.val < root.val && q.val < root.val)
+                root = root.left;
+            else if(p.val > root.val && q.val > root.val)
+                root = root.right;
+            else 
+                return root;
+        }
+        return null;
     }
 }
