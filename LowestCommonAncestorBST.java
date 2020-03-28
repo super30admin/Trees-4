@@ -1,4 +1,4 @@
-// Time Complexity : O(n) where n is number of digits in number
+// Time Complexity : O(logn) where n is number of nodes in tree
 // Space Complexity : O(h);h -> height of tree
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
