@@ -11,8 +11,37 @@ class KthSmallestElementinaBST230 {
              TreeNode right;
              TreeNode(int x) { val = x; }
          }
-    public int kthSmallest(TreeNode root, int k) {
+         class Wrapper{
+             int result;
+             int K;
+
+             Wrapper(int k){
+                 this.K = k;
+             }
+         }
         
+    
+        public int kthSmallest(TreeNode root,int k) {
+            Wrapper wrapper = new Wrapper(k);
+            inOrder(root,wrapper);
+            return wrapper.result;
+        }
+        
+        public void inOrder(TreeNode root, Wrapper wrapper){
+            if(root==null) return;
+            
+            inOrder(root.left,wrapper);
+            wrapper.K--;
+            if(wrapper.K==0){
+                wrapper.result = root.val;
+                return;
+            }
+            inOrder(root.right,wrapper);
+            
+        }
+    }
+}
+        /** 
         if(root==null) return 0;
         
         Stack<TreeNode> stack = new Stack<>();
@@ -48,7 +77,7 @@ class KthSmallestElementinaBST230 {
         
         
     }
-
+*/
 /**
  *  using system stack
  * int K, result;
@@ -75,4 +104,3 @@ class KthSmallestElementinaBST230 {
  * 
  * 
  */
-}
