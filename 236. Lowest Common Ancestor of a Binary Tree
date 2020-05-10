@@ -1,0 +1,41 @@
+Time complexity: O(m+n) where m->no. of edges, n->no. of nodes
+Space complexity: O(m+n) where m->no. of edges, n->no. of nodes
+Did this code successfully submitted on leetcode: Yes
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        
+        //base case
+        if(root==null)
+            return null;
+        
+        //if the element is at root
+        if(root.val == p.val || root.val==q.val)
+            return root;
+        
+        //Processing the left & right subtree
+        TreeNode left = lowestCommonAncestor(root.left,p,q);
+        TreeNode right = lowestCommonAncestor(root.right,p,q);
+        
+        //case 1:
+        if(left!=null && right!=null)
+            return root;
+        
+        //case 2:
+        else if(left!=null && right==null)
+            return left;
+        
+        //case 3:
+        else
+            return right;
+    }
+}
