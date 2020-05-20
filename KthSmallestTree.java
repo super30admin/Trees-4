@@ -8,10 +8,10 @@ import java.util.Stack;
 // Your code here along with comments explaining your approach
 
 public class KthSmallestTree {
-    int result = -1,count;
+    int result = -1,count = 0;
     public int kthSmallest(TreeNode root,int k){
         Stack<TreeNode> stack  = new Stack<>();
-
+        this.count = k;
         while(root != null || !stack.isEmpty()){
             while(root != null){
                 stack.push(root);
