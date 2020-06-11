@@ -1,0 +1,21 @@
+// Time Complexity : O(log n)
+// Space Complexity : O(log n)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        /* edge case or the root is one of the val then return root */
+        if (root == null || root == p || root == q) 
+            return root;
+        
+        /* find the nodes in left and right */
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        
+        /* if one node is in left and one is right then return root */
+        if( left != null && right != null)
+            return root;
+         return left != null ? left : right;
+    }
+}
