@@ -1,0 +1,44 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+class Solution {
+    int r = 0; /* to keep count of the elements visited till now */
+    int s = 0; /* store the val */
+    public int kthSmallest(TreeNode root, int k) {
+        if(root == null) /* edge case */
+            return -1;
+        return inorder(root,k);
+    }
+    public int inorder(TreeNode root, int k)
+    {
+        if(root == null)  /* edge case */
+            return 0;
+        inorder(root.left,k); /* left traversal*
+        r++; /* increment the element visited */
+        if(r == k) /* the no of the element is same as the k smallest */
+            s = root.val;
+        inorder(root.right,k); /* right traversal */
+        return s; /* value to be the returned */
+    }
+    
+    /* iterative 
+    Stack<TreeNode> stack = new Stack<>();
+    
+     while (true) {
+     // add the root and all of its left childs
+      while (root != null) {
+        stack.add(root);
+        root = root.left;
+      }
+      root = stack.removeLast(); // remove last from stack 
+      if (--k == 0) return root.val; // if decrement k makes it 0 then return that root val 
+      root = root.right; // makes its right as root
+    }
+  }
+    
+    
+    
+    */
+}
