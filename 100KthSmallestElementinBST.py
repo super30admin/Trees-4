@@ -49,3 +49,48 @@ class Solution:
             result = heapq.heappop(pq)
             i += 1
         return result.val
+"""
+# recursive solution
+class Solution:
+    def __init__(self):
+        self.result = None
+        self.count = None
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        self.count = k
+        self.helper(root)
+        return self.result
+    def helper(self,root):
+        # base
+        if root is None: return
+        # logic
+        self.helper(root.left)
+        self.count -= 1
+        if self.count == 0:
+            self.result = root.val
+            return self.result
+        self.helper(root.right)
+"""
+"""
+#iterative solution
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        stack = []
+
+        while root != None or len(stack) != 0:
+            while root != None:
+                stack.append(root)
+                root = root.left
+
+            root = stack.pop()
+            k -= 1
+            if k == 0:
+                return root.val
+            root = root.right
+"""
