@@ -1,5 +1,5 @@
-//time complexity O(log n)
-//space complexity O(1)
+//time complexity O(n) because in case of a skewed tree we have to visit each and every node
+//space complexity O(n) and the same case as above the space used by recursive stack will be to store n nodes
 
 /**
  * Definition for a binary tree node.
