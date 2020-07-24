@@ -1,0 +1,49 @@
+// Approach 1: Iterative with stack
+// Time complexity: O(n) n-> number of nodes in tree
+// Space complexity: O(h) -> size of the stack
+
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        Stack<TreeNode> st = new Stack<>();
+        while(!st.isEmpty() || root != null){
+            while(root != null){
+                st.push(root);
+                root = root.left;
+            }
+            root = st.pop();
+            k--;
+            if(k == 0) return root.val;
+
+            root = root.right;
+        }
+        return -1;
+    }
+}
+
+// Approach 2: Recursive Inorder traversal
+// Time complexity: O(n)
+// Space complexity: O(n)
+class Solution {
+    int count;
+    int result;
+    public int kthSmallest(TreeNode root, int k) {
+        count = k;
+        inorder(root);
+        return result;
+    }
+
+
+    private void inorder(TreeNode root){
+        // base case
+        if(root == null) return;
+
+        // logic
+        inorder(root.left);
+        count--;
+        if(count == 0){
+            result = root.val;
+            return;
+        }
+        inorder(root.right);
+    }
+
