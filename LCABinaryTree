@@ -1,0 +1,22 @@
+Executed in leet coed- Not working for some cases
+
+class Solution {
+    int ct=0;
+    TreeNode result=null;
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        postorder(root,p,q);
+        return result;
+    }
+    public void postorder(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null) return;
+        postorder(root.left,p,q);
+        postorder(root.right,p,q);
+        if(root.val==p.val)ct++;
+         if(root.val==q.val)ct++;
+        if(ct==2) {
+            result=root;
+            return;
+        } 
+        
+    }
+}
