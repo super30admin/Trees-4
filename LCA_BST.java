@@ -1,4 +1,4 @@
-// Time Complexity :O(n) // n-number of nodes
+// Time Complexity :O(log n) // n-number of nodes
 // Space Complexity :O(h) - Stack space // h- maximum height of the tree 
 // Did this code successfully run on Leetcode :yes 
 // https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
@@ -29,7 +29,7 @@ class Solution {
 }
 
 //Iterative Approach
-TC: O(n)
+TC: O(log n)
 SC: O(1)
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
