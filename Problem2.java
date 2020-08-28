@@ -9,6 +9,8 @@
 //      h: height of the tree
 //      n: number of elements
 // Space Complexity : O(1)
+//    Since we are just changing root reference
+// Note this is BST so h = log n
 class Problem2S1 {
     // Definition for a binary tree node.
     public class TreeNode {
@@ -45,11 +47,14 @@ class Problem2S1 {
     }
 }
 // Your code here along with comments explaining your approach
-// Approach 1: Using DFS iterative
+// Approach 2: Using DFS recursive
 // Time Complexity : O(h) = O(log n)
 //      h: height of the tree
-//      n: number of elemenst
-// Space Complexity : O(1)
+//      n: number of elements
+// Space Complexity : O(h) = O(log n)
+//      h: height of the tree
+//      n: number of elements
+// Note this is BST so h = log n
 class Problem2S2 {
     // Definition for a binary tree node.
     public class TreeNode {
