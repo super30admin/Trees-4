@@ -1,5 +1,5 @@
 /*
-  Time: O(n)
+  Time: O(logn)
   Space: O(L) L= height of the tree.
   Run on LeetCode: yes.
 */
