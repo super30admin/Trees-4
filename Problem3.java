@@ -1,4 +1,4 @@
-// There are three approaches
+// There are four approaches
 // Did this code successfully run on Leetcode : yes
 // Any problem you faced while coding this : no
 
@@ -91,11 +91,9 @@ class Problem3S1 {
 // Your code here along with comments explaining your approach
 // Approach 2: Using DFS return type boolean
 // Any root where left path has p and right path has q (vice-versa) is least common ancestor
-// Time Complexity :O(h) = O(h)
+// Time Complexity :O(n) = O(n)
 //      n: elements of tree
-//      h: height of the tree
-//  Worst case would be all n elemenst traversed
-//   
+//  Worst case would be all n elements traversed
 // Space Complexity :O(h)
 //      h: height of the tree
 //  Recursive stack space
@@ -164,10 +162,9 @@ class Problem3S2 {
 // Your code here along with comments explaining your approach
 // Approach 3: Using DFS return type int
 // Any root where left path has p and right path has q (vice-versa) is least common ancestor
-// Time Complexity :O(h) = O(h)
+// Time Complexity :O(n) = O(n)
 //      n: elements of tree
-//      h: height of the tree
-//  Worst case we traverse all h elements 
+//  Worst case we traverse all n elements 
 // Space Complexity :O(h)
 //      h: height of the tree
 //  Recursive stack space
@@ -239,5 +236,57 @@ class Problem3S3 {
             }
         }
         return result;
+    }
+}
+
+// Your code here along with comments explaining your approach
+// Approach 4: Using DFS return type TreeNode
+// Any root where left path has p and right path has q (vice-versa) is least common ancestor
+// Time Complexity :O(n) = O(n)
+//      n: elements of tree
+//  Worst case would be all n elements traversed
+// Space Complexity :O(h)
+//      h: height of the tree
+//  Recursive stack space
+class Problem3S4 {
+    // Definition for a binary tree node.
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+    
+    /** find lowest common Ancestor */
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        // base case
+       if(root == null || root == p || root == q)
+           return root;
+        
+        // check left
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+
+        // check right
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        
+        // found both i.e. p on right and q on left(or vice-versa)
+        if(left != null && right != null)
+            return root;
+        // found on left
+        else if(left != null)
+            return left;
+        // found on right
+        else if(right != null)
+            return right;
+        // not found
+        else
+            return null;
     }
 }
