@@ -18,3 +18,28 @@ class Solution {
         else return root; // when one is greater than root and other one is smaller than root                
     }
 }
+Approach 2 : Iterative Solution
+Time complexity : O(n)
+Space Complexity : O(1)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        while(root!=null){ //// If it is valid BST tree then while loop is always true. So we can have while(True)
+            if(root.val<p.val && root.val<q.val) root=root.right;
+            else if (root.val>p.val && root.val>q.val) root=root.left;
+            else return root;
+            
+        }
+        return null;
+        
+    }
+}
