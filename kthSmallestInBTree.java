@@ -13,6 +13,9 @@
  *     }
  * }
  */
+
+//TC: O(k)
+//SC: O(k)
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
         Stack<TreeNode> st = new Stack();
@@ -28,5 +31,26 @@ class Solution {
             root = root.right;
         }
         return -1;
+    }
+}
+
+
+class Solution {
+    int count; int result;
+    public int kthSmallest(TreeNode root, int k) {
+        count = k;
+        inorder(root);
+        return result;
+    }
+    
+    private void inorder(TreeNode root){
+        if(root==null) return;
+        inorder(root.left);
+        count--;
+        if(count==0) {
+            result = root.val;
+            return;
+        } 
+        inorder(root.right);
     }
 }
