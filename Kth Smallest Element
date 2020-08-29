@@ -1,5 +1,5 @@
 Approach 1 : Iterative solution
-Time Complexity : O(n) (Worst Case : n----> k)
+Time Complexity : O(k) (Worst Case : k----> n)
 Space complexity : O(H) --- > Length of the  stack to store the elements
 /**
  * Definition for a binary tree node.
@@ -36,7 +36,7 @@ class Solution {
 }
 
 Approach 2 : Using Recursive Approach 
-Time Complexity : O(n) --- Worst case n----> k
+Time Complexity : O(k) --- Worst case k----> n
 Space complexity : O(n) --- Recursive call stack under the hood
 /**
  * Definition for a binary tree node.
