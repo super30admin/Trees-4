@@ -77,3 +77,6 @@ class Solution {
         
     }
 }
+
+
+Note : If you want the largest element in the BST , we should always go to the right side of the Tree.
