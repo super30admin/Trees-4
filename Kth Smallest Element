@@ -37,7 +37,7 @@ class Solution {
 
 Approach 2 : Using Recursive Approach 
 Time Complexity : O(k) --- Worst case k----> n
-Space complexity : O(n) --- Recursive call stack under the hood
+Space complexity : O(k) --- Recursive call stack under the hood
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
