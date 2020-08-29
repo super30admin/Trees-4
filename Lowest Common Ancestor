@@ -19,6 +19,8 @@ class Solution {
     }
 }
 Approach 2 : Iterative Solution
+Note : We don't need a stack becuase we might not need to store the value and pop in order to move to the right as our search will be constrained toward either left or right.
+if nodes is less or greater than root at the same time , we return root as a LCA.
 Time complexity : O(n)
 Space Complexity : O(1)
 /**
