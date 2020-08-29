@@ -1,0 +1,20 @@
+Approach 1 : Recursive Approach
+Time Complexity : O(N)--- Worst case might be visiting all the nodes in BST
+Space complexity : O(N) ---- Maximum recursion space
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root.val > p.val && root.val > q.val) return lowestCommonAncestor(root.left,p,q); // Left Side
+        else if (root.val < p.val && root.val < q.val) return lowestCommonAncestor(root.right,p,q); // Right Side
+        else return root; // when one is greater than root and other one is smaller than root                
+    }
+}
