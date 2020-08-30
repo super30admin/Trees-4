@@ -7,7 +7,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-//TC: O(n), n: number of nodes in the tree
+//TC: O(2n), n: number of nodes in the tree
 //SC: O(n)
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
