@@ -1,0 +1,82 @@
+Approach 1 : Iterative solution
+Time Complexity : O(k) (Worst Case : k----> n)
+Space complexity : O(H) --- > Length of the  stack to store the elements
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int kthSmallest(TreeNode root, int k) { //Iterative Solution
+        Stack<TreeNode> stk=new Stack<>();
+        while(!stk.isEmpty() || root!=null){
+            // Build the stack using recursion
+            while( root!=null){
+                stk.push(root);
+                root=root.left;                              
+            }
+            root=stk.pop();
+            k--;
+            if(k==0) return root.val;
+            root=root.right;
+        } 
+        return -1;
+        
+    }
+}
+
+Approach 2 : Using Recursive Approach 
+Time Complexity : O(k) --- Worst case k----> n
+Space complexity : O(k) --- Recursive call stack under the hood
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int result;
+    int count;
+    public int kthSmallest(TreeNode root, int k) { //Recursive Solution
+        count=k;
+        inorder(root);
+        return result;       
+    }
+    private void inorder(TreeNode root){
+        // Base Case
+        if (root==null){
+            return ;
+        }
+        // logic
+        inorder(root.left);
+        /// Under the hood root.stk.pop();
+        count--;
+        if (count==0) {
+            result=root.val;
+        }
+        inorder(root.right);
+        
+    }
+}
+
+
+Note : If you want the largest element in the BST , we should always go to the right side of the Tree.

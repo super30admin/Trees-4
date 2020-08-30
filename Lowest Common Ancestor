@@ -1,0 +1,74 @@
+Approach 1 : Recursive Approach
+Time Complexity : O(N)--- Worst case might be visiting all the nodes in BST
+Space complexity : O(N) ---- Maximum recursion space
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root.val > p.val && root.val > q.val) return lowestCommonAncestor(root.left,p,q); // Left Side
+        else if (root.val < p.val && root.val < q.val) return lowestCommonAncestor(root.right,p,q); // Right Side
+        else return root; // when one is greater than root and other one is smaller than root                
+    }
+}
+Approach 2 : Iterative Solution
+Note : We don't need a stack becuase we might not need to store the value and pop in order to move to the right as our search will be constrained toward either left or right.
+if nodes is less or greater than root at the same time , we return root as a LCA.
+Time complexity : O(n)
+Space Complexity : O(1)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        while(root!=null){ //// If it is valid BST tree then while loop is always true. So we can have while(True)
+            if(root.val<p.val && root.val<q.val) root=root.right;
+            else if (root.val>p.val && root.val>q.val) root=root.left;
+            else return root;
+            
+        }
+        return null;
+        
+    }
+}
+
+Approach 3 : DFS
+Time Complexity : O(n)
+Space Complexity : Recursion space - O(n)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) { // DFS by finding left and rght vales
+        // Base Case
+        if (root==null || root==p || root==q) return root;
+        //Logic
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        TreeNode right=lowestCommonAncestor(root.right,p,q);
+        if(left!=null && right !=null) return root;
+        else if(left!=null) return left;
+        else if (right!=null) return right;
+        else return null;
+    }
+}
