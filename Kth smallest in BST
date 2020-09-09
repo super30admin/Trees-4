@@ -1,0 +1,43 @@
+# Time Complexity : o(n)
+# Space Complexity : o(h)
+# Did this code successfully run on Leetcode : yes
+# Recursive Solution
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        self.res=[]
+        self.inorder(root)
+        return self.res[k-1].val
+        
+    def inorder(self,root):
+        if not root:
+            return
+        self.inorder(root.left)
+        self.res.append(root)
+        self.inorder(root.right)
+## Iterative
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        stack=[]
+        res=[]
+        curr=root
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr=curr.left
+            node=stack.pop()
+            res.append(node.val)
+            if(node.right!= None):
+                curr=node.right
+        return res[k-1]
