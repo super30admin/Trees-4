@@ -55,16 +55,21 @@ var lowestCommonAncestor;
 lowestCommonAncestor = function(root, p, q) {
   var recurse;
   recurse = function(node) {
-    if (node.left === null && node.right === null && (node.val === p || node.val === q)) {
+    var left, right;
+    if (node === null) {
+      return null;
+    }
+    if (p.val === node.val || q.val === node.val) {
       return node;
     }
-    if (node.left !== null && node.right === null) {
+    left = recurse(node.left);
+    right = recurse(node.right);
+    if (left !== null && right !== null) {
+      return node;
+    } else if (left !== null) {
       return node.left;
     }
-    if (node.right !== null) {
-      return node.right;
-    }
-    return node;
+    return node.right;
   };
   return recurse(root);
 };

@@ -54,15 +54,16 @@
 # */
 lowestCommonAncestor = (root, p, q) ->
   recurse = (node) ->
-    if node.left is null and node.right is null and (node.val is p or node.val is q)
+    return null if node is null
+    return node if p.val is node.val or q.val is node.val
+
+    left = recurse(node.left)
+    right = recurse(node.right)
+
+    if left isnt null and right isnt null
       return node
-
-    if node.left isnt null and node.right is null
+    else if left isnt null
       return node.left
-
-    if node.right isnt null
-      return node.right
-
-    return node
+    return node.right
 
   recurse(root)
