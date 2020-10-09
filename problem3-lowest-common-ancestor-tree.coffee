@@ -1,42 +1,20 @@
 #https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
-#runtime:
-#space:
-#leetcode: yes
-#problems:
+#runtime: O(n) visit all n nodes
+#space: O(max depth) recursive stack
+#leetcode: yes and no (some bugs)
+#problems: doesn't work for all cases not sure why
 #explanation:
 #
-# searchvals = [p, q]
-# recurse over tree postorder (left, right, root)
+# recurse on root preorder
+#   if root is null return nul
+#   if root.val is p.val or q.val return root
 #
-# recurse(node) {
-#   if (node.left != null) leftnode = recurse(node.left)
-#   if (node.right != null) rightnode = recurse(node.right)
+#   left = recurse(root.left)
+#   right = recurse(root.right)
 #
-#   cases:
-#   1) node with no left or right
-#   2) node with just left
-#   3) node with just right
-#   4) node with both
-
-#   1)
-#   if node.left == null and node.right == null and node.val in searchvals
-#     remove node.val from searchvals
-#     return node
-
-#   2)
-#   if leftnode != null and rightnode == null
-#      return leftnode
-#
-#   3)
-#   if leftnode is null and rightnode isnt null
-#      return rightnode
-#
-#   4)
-#   return node
-# }
-#
-# return recurse(root)
-#
+#   if left and right aren't null return root
+#   if left isnt null return left
+#   return right
 #
 
 #/**
@@ -53,17 +31,14 @@
 # * @return {TreeNode}
 # */
 lowestCommonAncestor = (root, p, q) ->
-  recurse = (node) ->
-    return null if node is null
-    return node if p.val is node.val or q.val is node.val
+  return null if root is null
+  return root if p.val is root.val or q.val is root.val
 
-    left = recurse(node.left)
-    right = recurse(node.right)
+  left = lowestCommonAncestor(root.left, p, q)
+  right = lowestCommonAncestor(root.right, p, q)
 
-    if left isnt null and right isnt null
-      return node
-    else if left isnt null
-      return node.left
-    return node.right
-
-  recurse(root)
+  if left isnt null and right isnt null
+    return root
+  else if left isnt null
+    return root.left
+  return root.right

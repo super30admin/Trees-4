@@ -1,41 +1,20 @@
 //https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
-//runtime:
-//space:
-//leetcode: yes
-//problems:
+//runtime: O(n) visit all n nodes
+//space: O(max depth) recursive stack
+//leetcode: yes and no (some bugs)
+//problems: doesn't work for all cases not sure why
 //explanation:
 
-// searchvals = [p, q]
-// recurse over tree postorder (left, right, root)
+// recurse on root preorder
+//   if root is null return nul
+//   if root.val is p.val or q.val return root
 
-// recurse(node) {
-//   if (node.left != null) leftnode = recurse(node.left)
-//   if (node.right != null) rightnode = recurse(node.right)
+//   left = recurse(root.left)
+//   right = recurse(root.right)
 
-//   cases:
-//   1) node with no left or right
-//   2) node with just left
-//   3) node with just right
-//   4) node with both
-
-//   1)
-//   if node.left == null and node.right == null and node.val in searchvals
-//     remove node.val from searchvals
-//     return node
-
-//   2)
-//   if leftnode != null and rightnode == null
-//      return leftnode
-
-//   3)
-//   if leftnode is null and rightnode isnt null
-//      return rightnode
-
-//   4)
-//   return node
-// }
-
-// return recurse(root)
+//   if left and right aren't null return root
+//   if left isnt null return left
+//   return right
 
 ///**
 // * Definition for a binary tree node.
@@ -53,25 +32,21 @@
 var lowestCommonAncestor;
 
 lowestCommonAncestor = function(root, p, q) {
-  var recurse;
-  recurse = function(node) {
-    var left, right;
-    if (node === null) {
-      return null;
-    }
-    if (p.val === node.val || q.val === node.val) {
-      return node;
-    }
-    left = recurse(node.left);
-    right = recurse(node.right);
-    if (left !== null && right !== null) {
-      return node;
-    } else if (left !== null) {
-      return node.left;
-    }
-    return node.right;
-  };
-  return recurse(root);
+  var left, right;
+  if (root === null) {
+    return null;
+  }
+  if (p.val === root.val || q.val === root.val) {
+    return root;
+  }
+  left = lowestCommonAncestor(root.left, p, q);
+  right = lowestCommonAncestor(root.right, p, q);
+  if (left !== null && right !== null) {
+    return root;
+  } else if (left !== null) {
+    return root.left;
+  }
+  return root.right;
 };
 
 //# sourceMappingURL=problem3-lowest-common-ancestor-tree.js.map
