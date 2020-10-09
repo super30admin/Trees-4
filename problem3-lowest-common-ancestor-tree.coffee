@@ -40,5 +40,5 @@ lowestCommonAncestor = (root, p, q) ->
   if left isnt null and right isnt null
     return root
   else if left isnt null
-    return root.left
-  return root.right
+    return left
+  return right

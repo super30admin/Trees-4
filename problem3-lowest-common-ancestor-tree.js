@@ -44,9 +44,9 @@ lowestCommonAncestor = function(root, p, q) {
   if (left !== null && right !== null) {
     return root;
   } else if (left !== null) {
-    return root.left;
+    return left;
   }
-  return root.right;
+  return right;
 };
 
 //# sourceMappingURL=problem3-lowest-common-ancestor-tree.js.map
