@@ -1,20 +1,18 @@
     /*  Explanation
     # Leetcode problem link : https://leetcode.com/problems/kth-smallest-element-in-a-bst/submissions/
-    Time Complexity for operators : o(nlogn) .. n is the length of the string
-    Extra Space Complexity for operators : o(1)
+    Time Complexity for operators : o(n) .. n node in tree
+    Extra Space Complexity for operators : o(n)
     Did this code successfully run on Leetcode : NA
     Any problem you faced while coding this : No
 # Your code here along with comments explaining your approach
-        # Basic approach : 
+        # Basic approach : 1. Add into minheap and pop till k = 0
         # Optimized approach: 
                               
             # 1. 
-                    A) First sort the backward array on the basis of value. (mlogm)
-                    B) Then iterate thru the first array and calculate the target that we have to find in the second array.
-                    C) Apply binary search on the second array with target and second array to find the element.
-                    D) Once we have index of element, get the  sum and check if it is greater than max. Need to maintain max.
-                    E) if sum>max then create new arraylist and add then elemnts into it.
-                    F) At the end, return list.
+                    A) Do inorder traversal as it gives Sorted order of an BST
+                    B) Add all the left and thenstart popiing while popping decrease k if k == 1 return that node
+                        we foound our element.
+                    C) iif not then move to right of the inserted node.
     */  
 
 /**
@@ -26,7 +24,7 @@
  *     TreeNode() {}
  *     TreeNode(int val) { this.val = val; }
  *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
+ *         this.val = val;  
  *         this.left = left;
  *         this.right = right;
  *     }

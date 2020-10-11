@@ -1,20 +1,19 @@
     /*  Explanation
     # Leetcode problem link : https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-    Time Complexity for operators : o(nlogn) .. n is the length of the string
+    Time Complexity for operators : o(n) .. n is the number of nodes in tree.
     Extra Space Complexity for operators : o(1)
     Did this code successfully run on Leetcode : NA
     Any problem you faced while coding this : No
 # Your code here along with comments explaining your approach
-        # Basic approach : 
+        # Basic approach : Recursive call and check values but it requires more space than the oprmized one.
         # Optimized approach: 
                               
             # 1. 
-                    A) First sort the backward array on the basis of value. (mlogm)
-                    B) Then iterate thru the first array and calculate the target that we have to find in the second array.
-                    C) Apply binary search on the second array with target and second array to find the element.
-                    D) Once we have index of element, get the  sum and check if it is greater than max. Need to maintain max.
-                    E) if sum>max then create new arraylist and add then elemnts into it.
-                    F) At the end, return list.
+                    A) Trverse till root is not equal to null.
+                    B) if value of p is greater than root value and value of q also greater then our LCA is on right side.
+                    C) if value of p is lesser than root value and value of q also lesser then our LCA is on left side.
+                    D) if both is not possible then  return the root.
+                    E) At the end, return root.
     */  
 
 /**

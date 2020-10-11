@@ -9,12 +9,12 @@
         # Optimized approach: 
                               
             # 1. 
-                    A) First sort the backward array on the basis of value. (mlogm)
-                    B) Then iterate thru the first array and calculate the target that we have to find in the second array.
-                    C) Apply binary search on the second array with target and second array to find the element.
-                    D) Once we have index of element, get the  sum and check if it is greater than max. Need to maintain max.
-                    E) if sum>max then create new arraylist and add then elemnts into it.
-                    F) At the end, return list.
+                    A) Trverse on both the side left and right.
+                    B) If root value is equal to p.val or q.val then return root in recursive call.
+                    C) store the left and right pointer when traversing on left and right side.
+                    D) If left and right both not null means both elements on the left and right side LCA will be root.
+                    E) If left is not null and right is null means our LCA is left.
+                    F) Else return right as LCA.
     */  
     
 /**
@@ -26,26 +26,22 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null)
+            return root;
         
-        if(root == null) return root;
+        if(root.val == p.val || root.val == q.val)
+            return root;
         
-        // if(p.val > root.val && q.val>root.val)
-        //     return lowestCommonAncestor(root.right,p,q);
-        // else if(p.val < root.val && q.val < root.val)
-        //     return lowestCommonAncestor(root.left,p,q);
-        // else
-        //     return root;
+        TreeNode left = lowestCommonAncestor(root.left,p,q);
+        TreeNode right = lowestCommonAncestor(root.right,p,q);
         
-        while(root!=null){
-            if(p.val > root.val && q.val > root.val)
-                root = root.right;
-            else if(p.val < root.val && q.val < root.val)
-                root = root.left;
-            else return root;
-        }
-        return root;
+        if(left!=null && right!=null)
+            return root;
+        else if(left!=null && right == null)
+            return left;
+        else
+            return right;
     }
 }
