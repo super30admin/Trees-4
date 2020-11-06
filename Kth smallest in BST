@@ -13,6 +13,8 @@
  *     }
  * }
  */
+ // Time complexity : O(N): number of nodes in the tree
+ // space complexity : O(N) : stack space be N
 class Solution {
     int result;
     int count;
