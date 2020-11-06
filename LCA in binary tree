@@ -1,0 +1,30 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+// Time complexity : O(N) trverse all the nodes
+// space complexity
+class Solution {
+    TreeNode result;
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        helper(root, p, q);
+        return result;
+    }
+    
+    public boolean helper(TreeNode root, TreeNode p, TreeNode q){
+        if(root == null) return false;
+        boolean left = helper(root.left, p, q);
+        boolean right = helper(root.right, p, q);
+        boolean root1 = (p.val == root.val || q.val == root.val)? true : false;
+// we need to store our result when valid condition matches otherwise we will lose the track of it higher recursions when none of the pair will be true; we have unique values of p and q
+        if(root1 == true && left == true || root1 == true && right == true || left == true && right == true){
+            result = root;
+        }
+        return (left || right || root1);
+    }
+}
