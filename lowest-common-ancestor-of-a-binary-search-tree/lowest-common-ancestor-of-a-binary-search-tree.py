@@ -5,8 +5,8 @@
 #         self.left = None
 #         self.right = None
 ​
-#Time: 
-#Space: 
+#Time: O(N)
+#Space: O(N)
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         
