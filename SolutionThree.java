@@ -19,6 +19,7 @@
  * }
  */
 
+
 class SolutionThree {
     int result;
     int count;
