@@ -1,6 +1,6 @@
 // Iterative 
 // Time - Avg - O(LgN), Worst - O(N)
-// Space - Avg, O(lgN), Worst - O(N)
+// Space - O(1)
 
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
