@@ -1,0 +1,45 @@
+//TC: O(n)
+//SC: O(m+n) ??
+
+//Approach: Idea is to use backtracking to create path having only elements from root to target and remove other traversed elements
+//Traverse until both path matches and if not return last matching element
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null){
+            return null;
+        }
+        List<TreeNode> path1 = new ArrayList<>();
+        List<TreeNode> path2 = new ArrayList<>();
+
+        backtrack(root, p , path1);
+        backtrack(root, q , path2);
+        
+        int i = 0, j = 0;
+        while(i< path1.size() && j< path2.size()){
+            if(path1.get(i)!=path2.get(j)){
+                break;
+            }
+            i++;
+            j++;
+        }
+        return path1.get(i-1);
+    } 
+    
+    public void backtrack(TreeNode root, TreeNode target, List<TreeNode> lst){
+        if(root==null){
+            return;
+        }
+        lst.add(root);
+        if(root==target){
+            return;
+        }
+        backtrack(root.left, target, lst);
+        backtrack(root.right, target, lst);
+        //checking before removing
+        if(lst.get(lst.size()-1)==target){
+            return;
+        }
+        lst.remove(lst.size()-1);
+    }
+}
