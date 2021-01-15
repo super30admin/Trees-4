@@ -1,0 +1,25 @@
+//TC: O(n)
+//SC: O(n) list size
+
+//Approach:Idea is to perform inOrder traversal and this will sorted array.
+
+class Solution {
+    List<Integer> lst;
+    public int kthSmallest(TreeNode root, int k) {
+        lst = new ArrayList();
+        
+        inOrder(root);
+        
+        return lst.get(k-1);
+    }
+    
+    public void inOrder(TreeNode root){
+        if(root==null){
+            return;
+        }
+        
+        inOrder(root.left);
+        lst.add(root.val);
+        inOrder(root.right);
+    }
+}
