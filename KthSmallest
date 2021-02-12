@@ -1,0 +1,31 @@
+/*
+TC: O(n) in worst case we might have to go to right most element to find out if its the kth smallest element
+SC: O(n) due this is due to implicit stack
+
+Approach: We do inorder traversal to utilize bst property to get smallest element and then while
+coming back to root we count and try to match it with k
+ */
+
+class KthSmallest{
+    int count = 0;
+    int ans = 0;
+
+    public int kthSmallest(TreeNode root, int k) {
+
+        helper(root,k);
+        return ans;
+    }
+
+    private void helper(TreeNode root, int k){
+
+        if (root == null) return;
+
+        helper(root.left,k);
+        count++;
+        if (count == k){
+            ans = root.val ;
+        }
+        helper(root.right,k);
+
+    }
+}
