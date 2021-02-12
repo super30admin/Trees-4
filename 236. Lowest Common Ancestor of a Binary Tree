@@ -1,0 +1,45 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+
+class Solution:
+    def fun(self, root, p, q):
+        # if current node is None
+        if(not root):
+            return None;
+        # if node p is found, return p
+        if(root.val == p.val):
+            return root;
+        #if node q is found, return q
+        if(root.val == q.val):
+            return root;
+        left = self.fun(root.left, p, q);
+        right = self.fun(root.right, p, q);
+        # if current node's left subtree contains p and node's right subtree contains q
+        # then current node is the ancestor
+        if(left and right):
+            return root;
+        # if both p and q exists in the left subtree of current node
+        # return the ancestor present in the left subtree
+        elif(left):
+            return left;
+        # if both p and q exists in the right subtree of current node
+        # return the ancestor present in the right subtree
+        elif(right):
+            return right;
+        else:
+            return None;
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        return self.fun(root, p, q);
+        '''
+        time complexity = O(n)
+        space complexity = O(n)
+        '''
+    
+        
+        
