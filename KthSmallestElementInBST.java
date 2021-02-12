@@ -54,7 +54,7 @@ class Solution {
         { 
             result = root.val;
         }
-        if ( result == 0)     //optimization, dont iterate full tree, just return as soon as result is populated
+        if ( result == -1)     //optimization, dont iterate full tree, just return as soon as result is populated
            inorder(root.right, k);
     }
 }
