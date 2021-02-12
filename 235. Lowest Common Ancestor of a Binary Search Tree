@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # function to find the lowest common ancestor of a BST
+    def fun(self, root, p, q):
+        # if both p and q are less than current node
+        # go to left branch
+        if(p.val < root.val and q.val < root.val):
+            return self.fun(root.left, p, q);
+        # if both p and q are greater than current node
+        # go to right branch
+        elif(p.val > root.val and q.val > root.val):
+            return self.fun(root.right, p, q);
+        # else return the current node
+        else:
+            return root;
+    
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        return self.fun(root, p, q);
+    '''
+    n = number of nodes in a tree
+    time complexity = O(logn)
+    space complexity = O(h)
+    '''
+        
