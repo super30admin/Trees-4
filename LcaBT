@@ -1,0 +1,35 @@
+/*
+
+TC: O(N) this is to search the node p and node q first and then returning back
+SC: O(N)
+
+Approach: Find the nodes and then check if they have common root. If one of them is null then other
+node will automatically will become its own ancestor.
+ */
+ */
+
+class LcaBT{
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        return helper(root,p,q);
+    }
+
+    private TreeNode helper(TreeNode root, TreeNode p, TreeNode q){
+
+        if (root == null) return null;
+
+        if (root.val == p.val || root.val == q.val){
+            return root;
+        }
+
+        TreeNode left = helper(root.left,p,q);
+        TreeNode right = helper(root.right,p,q);
+
+        if (left !=null && right !=null){
+            return root;
+        }
+        return left == null ? right : left;
+    }
+
+}
