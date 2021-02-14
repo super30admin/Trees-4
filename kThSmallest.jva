@@ -1,0 +1,74 @@
+// Time Complexity : O(n)
+// Space Complexity : O(h) in Recursive approach
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+
+//Your code here along with comments explaining your approach
+// Inorder traversal
+// When a element has been traversed, pop from stack (or decrement k in recursive approach)
+// when k == 0,. return element.
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+
+    int k;
+    int result = -1;
+
+//Iterative approach
+    public int kthSmallestIterative(TreeNode root, int k) {
+
+        Stack<TreeNode> st = new Stack();
+
+        while(root != null || !st.isEmpty()) {
+            while(root != null) {
+                st.push(root);
+                root = root.left;
+            }
+            root = st.pop();
+            k--;
+            if(k == 0) {
+                return root.val;
+            }
+            root = root.right;
+        }
+
+        return -1;
+    }
+
+//Recursive approach
+    public int kthSmallest(TreeNode root, int k) {
+        this.k = k;
+        inorder(root);
+        return result;
+    }
+
+    private void inorder(TreeNode root) {
+        //base
+        if(root == null) return;
+
+        inorder(root.left);
+        k--;
+        if(k==0) result = root.val;
+        if(result == -1) {
+            inorder(root.right);
+        }
+
+    }
+
+}
