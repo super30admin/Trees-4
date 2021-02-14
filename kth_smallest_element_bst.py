@@ -70,7 +70,7 @@ def kthSmallest(self, root: TreeNode, k: int) -> int:
     self.result = None
     self.kthSmallestHelper(root, k)
     
-    return self.result.val
+    return self.result
      
 def kthSmallestHelper(self, root, k):
     # base case
@@ -83,7 +83,7 @@ def kthSmallestHelper(self, root, k):
     self.k -= 1
     
     if self.k == 0:
-        self.result = root
+        self.result = root.val
         return
     
     if self.result == None: # if we still havent found the result only then proceed to right side of tree

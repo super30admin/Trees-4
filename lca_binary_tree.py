@@ -1,4 +1,32 @@
-# Approach: To deal with cases where one path might be shorter than the other we add the target node twice
+# Approach: If both left and right are not null, return the root
+# Time - O(N) faster than below approach
+# Space - O(H)
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        
+        if root == None or root == p or root == q:
+            return root
+        
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        
+        if left != None and right != None:
+            return root
+        
+        if left != None:
+            return left
+        
+        if right != None:
+            return right
+        
+        else:
+            return None
+
+
+
+
+# Brute Force Approach: To deal with cases where one path might be shorter than the other we add the target node twice
 # Maintain paths and iterate over to see where the values differ and return the node before it which will be the ancestor
 # Time - O(N)
 # Space - O(H)
@@ -9,6 +37,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
