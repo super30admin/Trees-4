@@ -1,0 +1,50 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+       
+        int count ;
+        int result;
+    public int kthSmallest(TreeNode root, int k) {
+
+        //230. Kth Smallest Element in a BST
+        //Recursive solution
+        //Time complexity : O(n)
+        //Space : O(n)
+        
+     
+        helper(root,k);
+        return result;
+        
+    
+}
+    private void helper(TreeNode root, int k){
+        
+        if(root == null)
+            return;
+        
+       // if(result == -1)
+        helper(root.left,k);
+        
+        count++;
+        if(count == k)
+        {
+            result = root.val;
+            return;
+        }
+       // if(result == -1)        //still haven't found the kth smallest element
+        helper(root.right,k);
+    }
+}
