@@ -1,0 +1,33 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    
+    //235. Lowest Common Ancestor of a Binary Search Tree
+    //Time complexity : O(n) where n is the no. of nodes in the tree
+    //Space complexity : O(n)
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        
+    //    if(root == null)
+        
+        //if p and q are less than root , go to the left
+        if(p.val < root.val && q.val < root.val)
+           return lowestCommonAncestor(root.left,p,q);
+        
+        
+        //if p and q are greater than root, then go to the right
+        else if(p.val > root.val && q.val > root.val)
+            return lowestCommonAncestor(root.right,p,q);
+        
+        //if one of them is less and the other is greater
+        else
+            return root;
+    }
+}
