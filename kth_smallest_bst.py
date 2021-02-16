@@ -5,8 +5,7 @@
 
 
 # Your code here along with comments explaining your approach
-# I do inorder traversal and maintain previous node and whenever the previous node valus is smaller than the current node. I store prev and current node. If 
-# no other breaches happen return this else I assign the next current to the previous current and return both the variables
+# I do inorder traversal and whenever I reach a root of subtree, I deduct k. Whenever k reaches 0 I return root.
 
 # Definition for a binary tree node.
 # class TreeNode:
