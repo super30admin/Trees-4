@@ -17,7 +17,7 @@ maintain the parent list for both the node if both the node are in same side of 
 Time complexity : O(N) N = number of node in tree
 Space complexity : O(maximum depth of the tree)
 worked on leetcode : YES
-**/
+
 class Solution {
    
     
@@ -96,5 +96,71 @@ class Solution {
             dfs(node.right,temp);
         }
         
+    }
+}
+
+**/
+
+
+// optimized code :
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        
+        if(root == null) return null;
+        return dfsLCA(root, p, q);
+        
+    }
+    
+    private TreeNode dfsLCA(TreeNode node, TreeNode p, TreeNode q) {
+        // Case 1 : p and q are not on same side of root
+        // return root
+        if(p.val < node.val && q.val > node.val || 
+           q.val < node.val && p.val > node.val
+          ) {
+            
+            return node;
+            
+        } 
+        
+        // Case 2 :
+        // if we find the p or q while traversing
+        // return it.
+        // because we are now traversing in any one side of tree.
+        // what ever we find fist will be LCA
+        // node can be LCA of it self
+        if(p.val == node.val || q.val == node.val) {
+            return node;
+        }
+        
+        // Case 3 :
+        
+        // if both the node are less than current root
+        // return LCA of left
+        
+        if(p.val < node.val && q.val < node.val) {
+            return dfsLCA(node.left, p, q);
+        }
+        
+        // Case 4 :
+        
+        // if both the node are greater than current root
+        // return LCA of right
+        
+        if(p.val > node.val && q.val > node.val ) {
+            return dfsLCA(node.right, p, q);
+        }
+        
+        return null;
     }
 }
