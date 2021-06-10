@@ -1,4 +1,11 @@
+/*
+Intuition: Getting the paths from root to the nodes and compare the paths.
+#####################################################################
+Time Complexity : O(H) 
+Space Complexity : O(2*H)
+#####################################################################
 
+*/
 class Solution {
 public:
     vector<TreeNode*> path1;
