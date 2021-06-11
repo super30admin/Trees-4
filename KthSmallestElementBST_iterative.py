@@ -1,4 +1,4 @@
-# TC: O(N) since in worst case, we would be traversing all the nodes of the BST. 
+# TC: O(K) since we return the kth smallest element after traversing the kth element in inorder. 
 # SC: O(H) where H is the height of the stack being used.
 
 class Solution:
