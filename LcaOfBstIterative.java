@@ -7,7 +7,7 @@ In any other condition, we have found the root.
 Time complexity: O(H), in worst case, we would traverese the length
 Space complexity: O(1)
 */
-public class LcaOfBstRecursive {
+public class LcaOfBstIterative {
     TreeNode rootToReturn;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         while(true)
