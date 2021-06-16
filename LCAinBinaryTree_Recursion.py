@@ -23,5 +23,4 @@ class Solution:
                 return left
             else: 
                 return None
-        
         return recurse(root)
