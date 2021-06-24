@@ -1,5 +1,5 @@
 /**
-================================= Recursive approach ==========================================
+
 Time: O(N)  N is number of nodes in tree
 Space: O(H) stack space 
 Approach:
@@ -11,7 +11,7 @@ class Solution {
     TreeNode result;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root == null) 
-            return root;
+            return root;=====
         
         //p or q found, return root
         if(root.val == p.val || root.val == q.val)
