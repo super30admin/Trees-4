@@ -1,0 +1,124 @@
+PROBLEM 1 - Kth smallest element in BST
+// Time Complexity :O(n)
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :Yes
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func kthSmallest(_ root: TreeNode?, _ k: Int) -> Int {
+        guard let root = root else {
+            return 0
+        }
+        
+        let count = countNodes(root.left)
+    
+        if k <= count {
+            return kthSmallest(root.left, k)
+        } else if k > count + 1 {
+            return kthSmallest(root.right, k - 1 - count)
+        }
+        
+        return root.val
+    }
+    
+    func countNodes(_ root: TreeNode?) -> Int {
+        guard let root = root else {
+            return 0
+        }
+        
+        return countNodes(root.left) + countNodes(root.right) + 1
+    }
+    
+    func kthSmallest_DFS(_ root: TreeNode?, _ k: Int) -> Int {
+        guard let root = root else {
+            return 0
+        }
+        
+        var count = k
+        var result = 0
+        
+        helper(root, &count, &result)
+        
+        return result
+    }
+    
+    func helper(_ root: TreeNode, _ count: inout Int, _ result: inout Int) {
+        if let leftNode = root.left {
+            helper(leftNode, &count, &result)
+        }
+        
+        count -= 1
+        if count == 0 {
+            result = root.val
+            return
+        }
+        
+        if let rightNode = root.right {
+            helper(rightNode, &count, &result)
+        }
+    }
+    
+    func kthSmallest_Stack(_ root: TreeNode?, _ k: Int) -> Int {
+        var stack = [TreeNode]()
+        var count = k
+        var root = root
+        
+        while root != nil {
+            stack.append(root!)
+            root = root?.left
+        }
+        
+        while count != 0 {
+            let node = stack.removeLast()
+            count -= 1
+            if count == 0 {
+                return node.val
+            }
+            var rightNode = node.right
+            while rightNode != nil {
+                stack.append(rightNode!)
+                rightNode = rightNode?.left
+            }
+        }
+        
+        return -1
+    }
+}
+
+PROBLEM 2 - Lowest Common Ancestor of BST
+// Time Complexity :O(n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :Yes
+
+class Solution {
+    func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
+        var currentNode = root 
+        var pValue = p!.val 
+        var qValue = q!.val 
+        
+        while currentNode != nil {
+            if currentNode!.val < pValue && currentNode!.val <  qValue {
+                currentNode = currentNode!.right
+            } else if currentNode!.val > pValue && currentNode!.val > qValue {
+                currentNode = currentNode!.left
+            } else {
+                return currentNode
+            } 
+        }
+        return nil 
+    }
+}
