@@ -11,7 +11,7 @@ public class LowestCommonAncestor {
      * else return root as both are on different sides of root and hence the current root is the LCA
      */
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor_using_recursion(TreeNode root, TreeNode p, TreeNode q) {
 
 
         int pVal = p.val;
@@ -30,3 +30,36 @@ public class LowestCommonAncestor {
 
 
     }
+
+
+    /**
+     * Iterative solution for the same approach as above
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public TreeNode lowestCommonAncestor_iterative_solution(TreeNode root, TreeNode p, TreeNode q) {
+
+        while (true) {
+
+            int pVal = p.val;
+            int qVal = q.val;
+
+            int rootVal = root.val;
+
+            if (pVal < root.val && qVal < root.val)
+                root = root.left;
+
+            else if (pVal > root.val && qVal > root.val)
+                root = root.right;
+
+            else
+                return root;
+        }
+
+
+    }
+
+}
