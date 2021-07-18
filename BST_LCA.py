@@ -1,5 +1,5 @@
  """Time Complexity : O(n)
- Space Complexity : 
+ Space Complexity : O(n)
  Did this code successfully run on Leetcode : yes
  Any problem you faced while coding this : yes, initially i just returned the root, but due to this the main return was of a null value
 
