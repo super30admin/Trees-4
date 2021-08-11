@@ -1,18 +1,20 @@
-class LCABST {
+class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
-        int parentVal = root.val;
+        while (true) {
 
-        int pVal = p.val;
+            if (root.val > p.val && root.val > q.val) {
+                root = root.left;
+            } else if (root.val < p.val && root.val < q.val){
+                root = root.right;
+            } else {
+                return root;
+            }
 
-        int qVal = q.val;
-
-        if (pVal > parentVal && qVal > parentVal) {
-            return lowestCommonAncestor(root.right, p, q);
-        } else if (pVal < parentVal && qVal < parentVal) {
-            return lowestCommonAncestor(root.left, p, q);
-        } else {
-            return root;
         }
+
+
+
     }
+
 }

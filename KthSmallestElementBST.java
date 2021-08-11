@@ -1,15 +1,28 @@
-class KthSmallestElementBST {
-    public int kthSmallest(TreeNode root, int k) {
+class Solution {
+    int counter;
+    int result;
 
-        ArrayList<Integer> answer = inOrderTraversal(root, new ArrayList<Integer>());
-        return answer.get(k - 1);
+    public int kthSmallest(TreeNode root, int k) {
+        result = -1;
+        helper(root, k);
+        return result;
     }
 
-    private ArrayList<Integer> inOrderTraversal (TreeNode root, ArrayList<Integer> list) {
-        if (root == null) return list;
-        inOrderTraversal(root.left, list);
-        list.add(root.val);
-        inOrderTraversal(root.right, list);
-        return list;
+    private void helper (TreeNode root, int k) {
+        if (root == null) return;
+
+        if (result == -1) {
+            helper(root.left, k);
+        }
+
+        counter++;
+        if (counter == k) {
+            result = root.val;
+        }
+        if (result == -1) {
+            helper(root.right, k);
+        }
+
+
     }
 }
