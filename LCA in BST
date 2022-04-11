@@ -1,0 +1,22 @@
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null){
+            return null;
+        }
+        
+        if(root == p || root == q){
+            return root;
+        }
+        
+        //searching for p or q and rescursively get their common ancestor
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        
+        if(right != null && left != null){
+            return root;
+        }
+        //if left is null or for right
+        return left == null ? right : left;
+        
+    }
+}
