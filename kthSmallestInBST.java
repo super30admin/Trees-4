@@ -16,6 +16,8 @@ Problem: https://leetcode.com/problems/kth-smallest-element-in-a-bst/
  *     }
  * }
  */
+// TC: O(n)
+// SC: O(n)
 class Solution {
     Integer result;
     int k;
