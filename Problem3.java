@@ -51,4 +51,25 @@ public class Problem3 {
         //recurse
         path.remove(path.size() - 1);
     }
+
+    // Bottom-up Recusrion
+    // TC : O(n)
+    // SC : O(h)
+    public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) return root;
+
+        TreeNode left = lowestCommonAncestor(root.left, p , q);
+        TreeNode right = lowestCommonAncestor(root.right, p , q);
+
+        if (left == null && right == null){
+            return null;
+        }
+        else if (left != null && right == null){
+            return left;
+        }
+        else if (left == null && right != null){
+            return right;
+        }
+        return root;
+    }
 }
