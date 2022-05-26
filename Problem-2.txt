@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+//tc-O(n)
+//sc-O(h)
+//recursion
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        
+        int parent = root.val;
+       
+        int pVal = p.val;       
+        int qVal = q.val;
+
+        if (pVal > parent && qVal > parent) {
+           
+            return lowestCommonAncestor(root.right, p, q);
+        } else if (pVal < parent && qVal < parent) {
+           
+            return lowestCommonAncestor(root.left, p, q);
+        } else {
+           
+            return root;
+        }
+    }
+}
