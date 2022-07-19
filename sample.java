@@ -31,3 +31,75 @@ class Solution {
         
     }
 }
+//103.236.LOWEST COMMON ACHESTOR IN BINARY TREE****
+// Time Complexity :0(n); as we will be iterating through all the elements in the binary tree
+// Space Complexity :0(2h); i.e the space for 2 list pathp and pathq for maintaining 2 paths. as the path would be max of h . now here 2 is constant so 0(h);
+// Did this code successfully run on Leetcode :y
+// Any problem you faced while coding this :n
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    List<TreeNode> pathp;
+    List<TreeNode> pathq;
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) 
+    {
+        
+        pathp=new ArrayList<>();
+        pathq=new ArrayList<>();
+        
+        //null case
+        if(root==null) return null;
+        
+        //Calling the helper function
+        helper(root, p, q, new ArrayList<>());
+        
+        //Finding the exact element
+        for(int i=0;i<pathp.size();i++)
+        {
+            if(pathp.get(i)!=pathq.get(i))
+            {
+                return pathp.get(i-1);
+            }
+        }
+        return null;
+    }
+    
+    private void helper(TreeNode root, TreeNode p, TreeNode q, List<TreeNode> path)
+    {
+        //Base
+        if(root==null)
+        {
+            return;
+        }
+        path.add(root);
+        if(root==p)
+        {
+            pathp=new ArrayList<>(path);
+            pathp.add(p);
+        }
+        
+        if(root==q)
+        {
+            pathq=new ArrayList<>(path);
+            pathq.add(q);
+        }
+        
+        //Logic
+        
+        //Action
+        
+        //Recurse
+        helper(root.left, p, q, path);
+        helper(root.right, p, q, path);
+        
+        //Backtrack
+        path.remove(path.size()-1);
+    }
+}
