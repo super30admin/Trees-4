@@ -10,7 +10,48 @@ OR to get rid of unequal paths/ index out of bounds, we append the leaf node twi
 
 TC = O(n)
 SC = O(h) - 2 arrays for storing path 
+"""
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if root == None:
+            return None
+        pPath = []
+        qPath= []
+        def dfs(node, p,q,path):
+            #base
+            if node is None:
+                return 
+            path.append(node)
+            if node == p:
+                pPath.extend(path[:])
+                pPath.append(node)
+                
+            if node == q:
+                qPath.extend(path[:])
+                qPath.append(node)
+                
+            #logic
+            
+            dfs(node.left,p,q,path)
+            dfs(node.right,p,q,path)
+            path.pop()
+            
+        dfs(root, p, q, [])
+       
+        for i in range(1,len(pPath)):
+            
+            if pPath[i]!=qPath[i]:
+                return pPath[i-1]
+            
+
+"""
 M2(Bottom Up) : we will not need extra space in this case
 
 At each and every node we will maintain 2 things, left and a right pointer
