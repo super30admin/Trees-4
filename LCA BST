@@ -1,0 +1,54 @@
+// Time Complexity : O(h) 
+// Space Complexity : O(h)
+// Did this code successfully run on Leetcode : yes
+
+
+
+
+//TC O(h);
+//SC O(h)
+// class Solution 
+// {
+//     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) 
+//     {
+//         return recurr(root, p, q); 
+//     }
+    
+//     public TreeNode recurr(TreeNode root, TreeNode p, TreeNode q)
+//     {
+//            if(p.val > root.val && q.val > root.val)
+//            {
+//                return recurr(root.right,p,q);
+//            }else if(p.val < root.val && q.val < root.val)
+//            {
+//                return recurr(root.left,p,q);
+//            }
+           
+//            return root;
+//     }
+// }
+
+class Solution 
+{
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) 
+    {
+        while(true)
+        {
+            if(p.val > root.val && q.val > root.val)
+            {
+                root = root.right;
+            }else if(p.val < root.val && q.val < root.val)
+            {
+                root = root.left;
+            }
+            else
+            {
+                return root;
+            }
+        }
+        
+        //return root;
+    }
+    
+    
+}

@@ -1,0 +1,97 @@
+// Time Complexity : O(n) 
+// Space Complexity : O(h) for recursive stack
+// Did this code successfully run on Leetcode : yes
+
+
+
+
+// class Solution 
+// {
+//     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) 
+//     {
+//         return recurr(root, p, q);
+//     }
+    
+//     public TreeNode recurr(TreeNode root, TreeNode p, TreeNode q)
+//     {
+//         if(root == null)
+//         {
+//             return null;
+//         }
+        
+//         if(root == p || root == q)
+//         {
+//             return root;
+//         }
+        
+//         TreeNode l = recurr(root.left, p, q);
+//         TreeNode r = recurr(root.right, p, q);
+        
+//         if(l!=null && r!=null)
+//         {
+//             return root;
+//         }
+//         if(l!=null)
+//         {
+//             return l;
+//         }else if(r!=null)
+//         {
+//             return r;
+//         }
+        
+//         return null;
+//     }
+// }
+
+//Brute Solution
+class Solution 
+{
+    List<List<TreeNode>> res;
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) 
+    {
+        res = new ArrayList<>();
+        recurr(root, p, new ArrayList<>());
+        recurr(root, q, new ArrayList<>());
+        List<TreeNode> arr1 = new ArrayList<TreeNode>(res.get(0));
+        List<TreeNode> arr2 = new ArrayList<TreeNode>(res.get(1));
+        int i=0;
+        while(i!=arr1.size() && i!=arr2.size())
+        {
+            
+            if(arr1.get(i).val != arr2.get(i).val)
+            {
+                return arr1.get(i-1);
+            }
+            i++;
+        }
+        if(i==arr1.size())
+        {
+            return arr1.get(i-1);
+        }
+        if(i==arr2.size())
+        {
+            return arr2.get(i-1);
+        }
+        
+        return null;
+    }
+    
+    public void recurr(TreeNode root, TreeNode t, List<TreeNode> arr)
+    {
+        
+        if(root == null)
+        {
+            return ;
+        }
+        if(root == t)
+        {
+            arr.add(root);
+            res.add(new ArrayList<TreeNode>(arr));
+        }
+        arr.add(root);
+        recurr(root.left,t, arr);
+        recurr(root.right,t, arr);
+        arr.remove(arr.size()-1);
+    }
+    
+}
