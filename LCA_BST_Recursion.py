@@ -1,5 +1,5 @@
-# Time complexity : O(h)
-# Space complexity : O(h)
+# Time complexity : O(n)
+# Space complexity : O(n)
 # Leetcode : Solved and submitted
 
 # Definition for a binary tree node.
