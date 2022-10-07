@@ -1,0 +1,51 @@
+#Kth Smallest Element in a BST
+#tc:O(n)
+#sc:O(n)
+class Solution:
+    def kthSmallest(self, root, k):
+        self.k = k
+        self.res = None
+        self.helper(root)
+        return self.res
+
+    def helper(self, node):
+        if not node:
+            return
+        self.helper(node.left)
+        self.k -= 1
+        if self.k == 0:
+            self.res = node.val
+            return
+        self.helper(node.right)
+    
+#Lowest Common Ancestor of a Binary Search Tree
+#tc:O(h)
+#sc:O(1)
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+	    if p.val < q.val:
+		    min_val = p.val
+		    max_val = q.val
+	    else:
+		    min_val = q.val
+		    max_val = p.val
+
+	    while True:
+		    if min_val <= root.val <= max_val:
+			    return root
+		    elif max_val < root.val:
+			    root = root.left
+		    else:
+			    root = root.right
+#Lowest Common Ancestor of a Binary Tree
+#tc:O(n)
+#sc:O(n)
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        def ff(n):
+            if n in (None, p, q): return n
+            l, r = ff(n.left), ff(n.right)
+            if l and r: return n
+            else: return l or r
+        return ff(root)
