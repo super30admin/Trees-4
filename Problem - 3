@@ -4,8 +4,9 @@ Leetcode all test cases passed: Yes
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
       n is no of nodes in binary tree
+      h is height of binary tree
       Time Complexity: O(n)
-      Space Complexity: O(n)
+      Space Complexity: O(h)
 '''
 
 class Solution:
