@@ -1,0 +1,30 @@
+#  230. Kth Smallest Element in a BST
+'''
+Leetcode all test cases passed: Yes
+class Solution:
+     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+      h is height of binary tree
+      Time Complexity: O(k)
+      Space Complexity: O(h)
+'''
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        self.result = None
+        self.count = k
+        def dfs(root):
+            if root == None or self.result != None:
+                return 
+            dfs(root.left)
+            self.count -= 1
+            if self.count == 0:
+                self.result = root.val
+                return 
+            dfs(root.right)          
+        dfs(root)
+        return self.result
