@@ -1,0 +1,18 @@
+#  235. Lowest Common Ancestor of a Binary Search Tree
+'''
+Leetcode all test cases passed: Yes
+class Solution:
+   def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+      h is height of binary tree
+      Time Complexity: O(h)
+      Space Complexity: O(h)
+'''
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        
+        if root.val > q.val and root.val > p.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        elif root.val < q.val and root.val < p.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+        else:
+            return root
