@@ -32,7 +32,7 @@ class Solution:
 
     # Backtracking Solution
     # TC: O(n)
-    # SC: O(h)
+    # SC: O(n)
     # Here perform backtracking
     # we maintain a path for both the nodes and for the last element we make a duplicate entry
     # so that while iterating, the shorter one does not go out of bounds and throw and error
