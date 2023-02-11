@@ -1,8 +1,8 @@
 # Time Complexity :
-# O(N^2)
+# O(N) - Number of nodes
 
 # Space Complexity :
-# O(N^2)
+# O(H) - height of the tree
 
 # Did this code successfully run on Leetcode :
 #Yes
