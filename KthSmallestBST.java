@@ -1,7 +1,3 @@
-// Time Complexity :O(log n) where n is the number of nodes in the tree
-// Space Complexity :O(log n) where n is the number of nodes in the tree
-// Did this code successfully run on Leetcode :yes
-// Any problem you faced while coding this :
 
 class TreeNode {
     int val;
@@ -15,7 +11,40 @@ class TreeNode {
         this.right = right;
     }
 }
-public class KthSmallestBST {
+
+// Time Complexity :O(log n) where n is the number of nodes in the tree
+// Space Complexity :O(log n) where n is the number of nodes in the tree
+// Did this code successfully run on Leetcode :yes
+public class KthSmallestBST{
+    private int count;
+    private TreeNode result;
+
+    public int kthSmallest(TreeNode root, int k) {
+
+        count = k;
+        inorder(root);
+        return result.val;
+    }
+
+    private void inorder(TreeNode root){
+
+        if(root == null){
+            return;
+        }
+
+        inorder(root.left);
+        count--;
+        if(count == 0){
+            result = root;
+        }
+        inorder(root.right);
+    }
+}
+
+// Time Complexity :O(ln) where n is the number of nodes in the tree
+// Space Complexity :O(log n) where n is the number of nodes in the tree
+// Did this code successfully run on Leetcode :yes
+ class KthSmallestBSTBruteForce {
     private int count;
     private int value;
     private int k;
