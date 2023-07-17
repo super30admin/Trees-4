@@ -1,5 +1,5 @@
-# Time Complexity : O()
-# Space Complexity : O()
+# Time Complexity : O(h) or O(logn) for a complete BST
+# Space Complexity : O(1)
 # Did this code successfully run on Leetcode : Yes
 # Any problem you faced while coding this : No
 
