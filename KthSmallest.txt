@@ -1,0 +1,35 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+ // Time Complexity o(n) and Space Complexity o(h)
+class Solution {
+    TreeNode res;
+    int count;
+    public int kthSmallest(TreeNode root, int k) {
+        count=k;
+        inorder(root);
+        return res.val;
+    }
+    public void inorder(TreeNode root){
+        if(root==null) return;
+
+        if(res==null) inorder(root.left);
+        count--;
+        if(count==0){
+            res=root;
+        }
+        if(res==null) inorder(root.right);
+    }
+}
