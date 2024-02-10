@@ -1,0 +1,25 @@
+# Lowest Common Ancestor of a Binary Search Tree
+
+#time complexity of O(H), where H is the height of the BST
+#space complexity is O(1)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # Traverse the tree from the root
+        while root:
+            # If both p and q are greater than the current node's value, move to the right subtree
+            if p.val > root.val and q.val > root.val:
+                root = root.right
+            # If both p and q are smaller than the current node's value, move to the left subtree
+            elif p.val < root.val and q.val < root.val:
+                root = root.left
+            # If the current node's value is between p and q or if one of the nodes is the current node, return the current node
+            else:
+                return root

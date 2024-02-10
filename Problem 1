@@ -1,0 +1,35 @@
+#Kth Snallest element in a BST
+
+#time complexity of O(n + k) 
+#space complexity of O(n + k)
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        # Stack for iterative inorder traversal
+        stack = []
+        
+        # Perform iterative inorder traversal
+        while True:
+            # Traverse left subtree as far as possible
+            while root:
+                stack.append(root)
+                root = root.left
+            
+            # Retrieve node from stack
+            root = stack.pop()
+            k -= 1
+            
+            # If k becomes 0, return the value of the current node
+            if k == 0:
+                return root.val
+            
+            # Move to the right subtree
+            root = root.right

@@ -1,0 +1,49 @@
+#Lowest Common Ancestor of a Binary Tree
+
+#This solution has a time complexity of O(N), where N is the number of nodes in the binary tree, as we need to visit each node exactly once. 
+#The space complexity is also O(N) due to the recursive stack space used during the depth-first search traversal.
+
+
+
+
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # Helper function to perform DFS traversal and find the LCA
+        def dfs(node):
+            nonlocal lca
+            
+            # Base case: If the node is None or if we've found the LCA, return False
+            if not node or lca:
+                return False
+            
+            # Recursively search left and right subtrees
+            left = dfs(node.left)
+            right = dfs(node.right)
+            
+            # Check if the current node is one of the target nodes
+            mid = node == p or node == q
+            
+            # If any two flags are True, update the LCA
+            if (left and right) or (mid and (left or right)):
+                lca = node
+            
+            # Return True if any flag is True
+            return left or right or mid
+        
+        # Initialize LCA as None
+        lca = None
+        
+        # Start DFS traversal from the root
+        dfs(root)
+        
+        return lca
