@@ -1,3 +1,7 @@
+'''
+TC: O(n) - n is the number of nodes
+SC: O(h) - h is the height of the binary search tree
+'''
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
