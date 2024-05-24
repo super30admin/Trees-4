@@ -1,0 +1,30 @@
+Time Complexity: O(n)
+Space Complexity: O(h)
+Approach: Approach is to do a inorder traversal (right-root-left). 
+When the right element is traversed first it gives elements sorted in descending order.
+Keep incrementing count and check if the count matches the count of K.
+class Solution
+{
+    // return the Kth largest element in the given BST rooted at 'root'
+    int found=0;
+    int count=0;
+    public int kthLargest(Node root,int K)
+    {
+        //Your code here
+        find(root,K);
+        return found;
+    }
+    public void find(Node root,int k)
+    {
+        if(root==null)return;
+        
+        find(root.right,k);
+        count++;
+        if(count==k)
+        {
+            found=root.data;
+            return;
+        }
+        find(root.left,k);
+    }
+}

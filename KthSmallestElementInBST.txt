@@ -1,0 +1,47 @@
+Time Complexity: O(n): n is the number of elements in input
+Space Complexity: O(h): Stack space
+Approach: Approach to solve this problem is to do a inorder traversal(left, root, right). 
+Always inorder traversal gives elements in sorted order.
+During traversal if the output is null then keep traversing left first, root next and right later.
+Keep incrementing the count , if the count is equals to K value then save the Kth smallest element.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int count=0;
+    TreeNode output=null;
+    public int kthSmallest(TreeNode root, int k) {
+        helper(root,k); 
+        return output.val;
+    }
+
+    public void helper(TreeNode root, int k){
+        if(root==null) return;
+        if(output==null)
+        {
+            helper(root.left, k);
+        }
+        
+        if(++count==k) 
+        {
+            output=root;
+            return;
+        }
+
+        if(output==null){
+            helper(root.right, k);
+        }
+    }
+}
