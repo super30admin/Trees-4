@@ -1,0 +1,39 @@
+Recursive --> T.c --> O(h), S.c --> O(h)
+
+class Solution {
+    TreeNode result ;
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null){
+            return null;
+        }
+        if(root.val < p.val && root.val < q.val){
+          lowestCommonAncestor(root.right,p,q);
+        }else if(root.val > p.val && root.val > q.val){
+          lowestCommonAncestor(root.left,p,q);   
+        }else{
+          result = root;  
+        }
+    return result;
+    }
+}
+************************************************************************************************
+Iterative --> T.c --> O(h) , S.c --> O(1)
+class Solution {
+    TreeNode result ;
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null){
+            return null;
+        }
+        while(root != null){
+            if(root.val < p.val && root.val < q.val){
+                root = root.right;
+            }else if(root.val > p.val && root.val > q.val){
+                root = root.left;
+            }else{
+                result =  root;
+                break;
+            }
+        }        
+    return result;
+    }
+}

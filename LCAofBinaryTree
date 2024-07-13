@@ -1,0 +1,52 @@
+T.c --> O(n), S.c --> O(h)
+class Solution {
+    List<TreeNode> result1 = new ArrayList<>();
+    List<TreeNode> result2 = new ArrayList<>();
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        dfs(root,p,q,new ArrayList<>());
+        int i =0;
+        for(i=0; i<result1.size();i++){
+           if(result1.get(i) != result2.get(i)){
+              return result1.get(i-1);
+           }  
+        }
+        return null;
+    }
+    private void dfs(TreeNode root, TreeNode p, TreeNode q, List<TreeNode> path){
+        if(root == null || (result1.size() > 0 && result2.size() > 0)){
+            return;
+        }
+        path.add(root);
+        if(root == p){
+          result1 = new ArrayList<>(path);
+          result1.add(root);
+        }
+        if(root == q){
+          result2 = new ArrayList<>(path);
+          result2.add(root);
+        }
+        dfs(root.left,p,q,path);
+        dfs(root.right,p,q,path);
+        path.remove(path.size()-1);
+    }
+}
+***************************************************************************************
+T.c --> O(n) , S.c --> O(h)
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+       if(root == null || root == p || root == q){
+         return root;
+       }        
+       TreeNode left  = lowestCommonAncestor(root.left,p,q);
+       TreeNode right = lowestCommonAncestor(root.right,p,q);
+       if(left == null && right == null){
+         return null;
+       }else if(left == null && right != null){
+        return right;
+       }else if(left != null && right == null){
+        return left;
+       }else {
+        return root;
+       }
+    }
+}
