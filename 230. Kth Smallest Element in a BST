@@ -1,0 +1,44 @@
+Time complexity: O(m+n) m-> no. of nodes, n-> no. of edges
+Space complexity: O(m+n) m-> no. of nodes, n-> no. of edges
+Did this code successfully submitted on leetcode: Yes
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        Stack<TreeNode> stack = new Stack<>();
+        
+        while(root!=null || !stack.isEmpty()){
+            
+            //1. 
+            while(root!=null){
+                stack.push(root);
+                root = root.left;
+            }
+            
+            //2.
+            TreeNode top = stack.pop();
+            k--;
+            if(k==0)
+                return top.val;
+            
+            //3.
+            root = top.right;
+        }
+        return -1;
+    }
+}
