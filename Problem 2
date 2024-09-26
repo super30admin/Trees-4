@@ -1,0 +1,18 @@
+//Time Complexity: O(n)
+//Space Complexity: O(1)
+
+//According to the values of p, q, and the root, check on which side of the BST the LCA lies.
+//If p and q, lie on either side of the root, then root is the LCA
+//Otherwise, call the function recursively on the left subtree or right subtree
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+      if(root.val > p.val && root.val > q.val){
+            return lowestCommonAncestor(root.left, p, q);
+        }else if(root.val < p.val && root.val < q.val){
+            return lowestCommonAncestor(root.right, p, q);
+        }else{
+            return root;
+        }
+    }
+}
