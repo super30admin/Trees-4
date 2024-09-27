@@ -1,0 +1,38 @@
+// Time Complexity : O(log n)
+// Space Complexity : O(log n)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        /* recrusive approach */
+        // as it is bst the values will be in organized way , smaller on left and greater on right 
+        if(root == null ) /* edge case */
+            return root;
+        
+        if( root.val > p.val && root. val > q.val) /* if both value are less than root then search in left subtree of root */
+            return lowestCommonAncestor(root.left,p,q);
+        if( root.val < p.val && root. val < q.val) /* if both value are gretaer than root then search in right subtree of root */
+            return lowestCommonAncestor(root.right,p,q);
+        else
+            return root; /* else return root */
+        
+        /* Iterative approach 
+        
+        TreeNode node = root;
+        while(node != null){
+            if( node.val > p.val && node. val > q.val)
+               node  = node.left;
+            if( node.val < p.val && node. val < q.val)
+                node = node.right;
+            else
+               return node;
+        }
+        
+        return null;
+        */
+    }
+}
+
+
+
