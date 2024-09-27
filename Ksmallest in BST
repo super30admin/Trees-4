@@ -1,0 +1,92 @@
+/**
+Leetcode yes
+problem no
+time O(n)
+space O(n)
+
+Do inorder traversal of bst. this will give a sorted array. return k-1th index
+
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        
+        if(root == null)
+            return 0;
+        
+        List<Integer> result  = new ArrayList<>();
+        result = helper(root, new ArrayList<Integer>());
+        
+        return result.get(k-1);
+    }
+    
+    public static ArrayList<Integer> helper(TreeNode root, ArrayList<Integer> result)
+    {
+        if(root == null)
+            return result;
+        
+        helper(root.left, result);
+        result.add(root.val);
+        helper(root.right,result);
+        
+        return result;
+    }
+}
+
+
+//Approach 2
+/** run bfs and store element in priority queue. At the end remove top element from q k times.
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        
+        if(root == null)
+            return 0;
+        PriorityQueue<TreeNode> q = new PriorityQueue<>( (a,b) -> a.val-b.val);
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        q.add(root);
+        
+        while(!queue.isEmpty())
+        {
+            int size = queue.size();
+            
+            for(int i =0; i<size;i++)
+            {
+                TreeNode temp = queue.poll();
+                if(temp.left!=null)
+                {
+                    queue.add(temp.left);
+                    q.add(temp.left);   
+                }
+                
+                if(temp.right!=null)
+                {
+                    queue.add(temp.right);
+                    q.add(temp.right);
+                }
+            } 
+        }
+        
+        for(int i =0 ;i<k-1 ;i++)
+            q.remove();
+        
+        return q.peek().val;
+        
+    }
+}
