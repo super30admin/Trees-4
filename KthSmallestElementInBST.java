@@ -65,7 +65,7 @@ public class KthSmallestElementInBST {
                 return root.val;
             }
 
-            root = root.right;;
+            root = root.right;
         }
         return -1;
     }
