@@ -1,0 +1,199 @@
+// Time Complexity :O(N)
+// Space Complexity :O(N)-> for a balanced tree O(logn) for a skew tree O(n)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach:
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
+ * }
+ */
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        List<Integer> result = new ArrayList<>(); // to store n nodes from tree
+        helper(root, result); // in-order traversal of BST 
+        return result.get(k - 1);//k th smallest because from bst inordertraversal we are getting ascending order of elements
+    }
+
+    public void helper(TreeNode root, List<Integer> result) {
+        if (root == null) { // base case
+            return;
+        }
+        //recusrion
+        helper(root.left, result);
+        //action
+        result.add(root.val);
+        helper(root.right, result);
+    }
+}
+
+
+//same approach as above but here have used conditional recursion has once we reached kt element no need to go further
+
+
+// Time Complexity :O(N)
+// Space Complexity :O(N)-> for a balanced tree O(logn) for a skew tree O(n)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+// Your code here along with comments explaining your approach:
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
+ * }
+ */
+class Solution {
+    int count = 0;
+    int result = 0;
+    boolean flag;
+
+    public int kthSmallest(TreeNode root, int k) {
+        helper(root, k, new int[]{count});
+        return result;
+    }
+
+    public void helper(TreeNode root, int k,int[] count) {
+        if (root == null) {
+            return;
+        }
+        System.out.println("root"+root.val+"count "+count[0]);
+        helper(root.left, k,count);
+        count[0]++;
+        System.out.println("after"+root.val+"count "+count[0]);
+        if (count[0] == k) {
+            result = root.val;
+            flag = true;
+        }
+        if (!flag) { // conditional recurssion
+            helper(root.right, k,count);
+        }
+    }
+}
+
+/////////
+/// // Time Complexity :O(N)
+// Space Complexity :O(N)-> for a balanced tree O(logn) for a skew tree O(n)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+// Your code here along with comments explaining your approach:
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
+ * }
+ */
+class Solution {
+    int count = 0;
+    int result = 0;
+    boolean flag;
+
+    public int kthSmallest(TreeNode root, int k) {
+        helper(root, k);
+        return result;
+    }
+
+    public void helper(TreeNode root, int k) {
+        if (root == null) {
+            return;
+        }
+        System.out.println("root"+root.val+"count "+count);
+        helper(root.left, k);
+        count++;
+        System.out.println("after"+root.val+"count "+count);
+        if (count == k) {
+            result = root.val;
+            flag = true;
+        }
+        if (!flag) { // conditional recurssion
+            helper(root.right, k);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+//itteration with recusrion (default conditional recursion)
+
+// Time Complexity :O(N)
+// Space Complexity :O(N)-> for a balanced tree O(logn) for a skew tree O(n)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+// Your code here along with comments explaining your approach:
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
+ * }
+ */
+class Solution {
+    int count = 0;
+    public int kthSmallest(TreeNode root, int k) {
+        Stack<TreeNode> st = new Stack<>();
+        while (!st.isEmpty() || root != null) {
+            while (root != null) {
+                st.push(root);
+                root = root.left; //processing left nodes till leaf node as we should get kth least eleemnt
+            }
+            count++; //incrementing if reach null
+            root = st.pop(); //popping from root stack
+            if (count == k) {
+                return root.val;
+            }
+            root = root.right;//processing right nodes only if k is not reaches
+        }
+        return 856;
+    }
+
+}
