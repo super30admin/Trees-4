@@ -1,0 +1,47 @@
+// Time Complexity: O(n)
+// Space Complexity: O(h), h-> height of tree
+
+// Perform inorder traversal in the tree and count the number of elements
+// Keep traversing as long as the result node is null
+// When count becomes equal to k, then stop and return the value of that node
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int count;
+    TreeNode result;
+    public int kthSmallest(TreeNode root, int k) {
+        inorder(root, k);
+        return result.val;
+    }
+
+    private void inorder(TreeNode root, int k) {
+        if(root == null)
+            return;
+        
+        if(result == null)
+            inorder(root.left, k);
+        
+        count++;
+        if(count == k) {
+            result = root;
+            return;
+        }
+
+        if(result == null)
+            inorder(root.right, k);
+    }
+}
